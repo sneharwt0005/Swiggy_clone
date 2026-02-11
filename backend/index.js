@@ -2,8 +2,7 @@ import express from "express";
 import cors from "cors";
 import menu from "./data/menu.js";
 const app = express();
-const PORT = 5000;
-
+const PORT = process.env.PORT || 5000;
 app.use(cors());
 
 app.get("/", (req, res) => {
