@@ -34,29 +34,30 @@ function handleDecrementItems(info){
 
 
 
- useEffect(() => {
-  async function fetchMenu() {
-    try {
-      const res = await fetch(`https://swiggyclone-sjpl.onrender.com/api/menu/${id}`);
+  useEffect(() => {
+    async function fetchMenu() {
+      const res = await fetch(`http://localhost:5000/api/menu/${id}`);
       const json = await res.json();
-      console.log("Menu data from backend:", json);
 
-      // Safely extract recommended items
-      const recommendedSection =
-        json?.cards?.[0]?.groupedCard?.cardGroupMap?.REGULAR?.cards
-          ?.find(card => card?.card?.card?.title === "Recommended");
+      // 1️⃣ Get REGULAR cards
+      const regularCards =
+        json?.data?.cards
+          ?.find(c => c.groupedCard)
+          ?.groupedCard?.cardGroupMap?.REGULAR?.cards;
 
+      // 2️⃣ Find Recommended section
+      const recommendedSection = regularCards?.find(
+        card => card?.card?.card?.title === "Recommended"
+      );
+
+      // 3️⃣ Extract items
       const items = recommendedSection?.card?.card?.itemCards || [];
 
       setRecommended(items);
-    } catch (err) {
-      console.error("Error fetching menu:", err);
     }
-  }
 
-  fetchMenu();
-}, [id]);
-
+    fetchMenu();
+  }, [id]);
 
  const filteredItems = recommended
   // 🔍 Search filter
