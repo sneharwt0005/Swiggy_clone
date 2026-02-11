@@ -36,7 +36,7 @@ function handleDecrementItems(info){
 
   useEffect(() => {
     async function fetchMenu() {
-      const res = await fetch(`http://localhost:5000/api/menu/${id}`);
+      const res = await fetch(`https://swiggyclone-sjpl.onrender.com/api/menu/${id}`);
       const json = await res.json();
 
       // 1️⃣ Get REGULAR cards
