@@ -28,3 +28,10 @@ The application allows users to browse restaurant menus, filter items, search di
 ### 📌 1. Dynamic Menu Fetching
 Fetches restaurant menu data dynamically using route parameter:
 
+## 🚀 Live Demo
+
+🔗 [Frontend Live](https://your-frontend.vercel.app)
+
+🔗 [Backend API](https://swiggyclone-sjpl.onrender.com)
+
+
