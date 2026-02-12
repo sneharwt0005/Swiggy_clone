@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import fs from "fs";
+import path from "path";
 import menu from "./data/menu.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -9,23 +11,16 @@ app.get("/", (req, res) => {
   res.send("Server running new commit 🚀");
 });
 
-app.get("/api/restaurants", async (req, res) => {
+
+
+app.get("/api/restaurants", (req, res) => {
   try {
-    console.log("Route hit");
-
-    const response = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.3165&lng=78.0322&page_type=DESKTOP_WEB_LISTING"
-    );
-
-    console.log("Response status:", response.status);
-
-    const text = await response.text();
-    console.log("Raw response:", text.substring(0, 200));
-
-    res.send(text);
-  } catch (error) {
-    console.error("Backend error:", error);
-    res.status(500).json({ error: error.message });
+    const dataPath = path.join(process.cwd(), "data", "restaurant.json");
+    const data = fs.readFileSync(dataPath, "utf-8");
+    res.json(JSON.parse(data));
+  } catch (err) {
+    console.error("Error reading restaurants.json:", err);
+    res.status(500).json({ error: "Failed to load restaurants" });
   }
 });
 
