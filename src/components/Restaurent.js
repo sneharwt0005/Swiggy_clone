@@ -10,7 +10,7 @@ export default function Restaurent() {
     async function fetchData() {
       try {
         const response = await fetch(
-          "/dapi/restaurants/list/v5?lat=30.3165&lng=78.0322&page_type=DESKTOP_WEB_LISTING"
+         "https://your-backend-name.onrender.com/api/restaurants"
         );
         const data = await response.json();
 

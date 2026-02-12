@@ -9,6 +9,19 @@ app.get("/", (req, res) => {
   res.send("Server running 🚀");
 });
 
+app.get("/api/restaurants", async (req, res) => {
+  try {
+    const response = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.3165&lng=78.0322&page_type=DESKTOP_WEB_LISTING"
+    );
+
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch data" });
+  }
+});
+
 app.get("/api/menu/:id", (req, res) => {
   res.json(menu); // 🔥 mock swiggy menu
 });
