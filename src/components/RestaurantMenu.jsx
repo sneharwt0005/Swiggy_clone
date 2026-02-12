@@ -17,15 +17,21 @@ const cartItems = useSelector(state => state.cartslice.items);
 
 
 
-function handleAddItems(info){
+function handleAddItems(info) {
+ 
   dispatch(addItems(info));
 }
 
-function handleIncrementItems(info){
+
+function handleIncrementItems(info) {
+  
+
   dispatch(IncrementItems(info));
 }
 
-function handleDecrementItems(info){
+
+function handleDecrementItems(info) {
+
   dispatch(DecrementItems(info));
 }
 
@@ -33,10 +39,11 @@ function handleDecrementItems(info){
 
 
 
-
   useEffect(() => {
     async function fetchMenu() {
-      const res = await fetch(`http://localhost:5000/api/menu/${id}`);
+const res = await fetch(
+  `https://swiggyclone-sjpl.onrender.com/api/menu/${id}`
+);
       const json = await res.json();
 
       // 1️⃣ Get REGULAR cards
@@ -165,7 +172,6 @@ function handleDecrementItems(info){
   <div className="mt-2">
     {filteredItems.map(item => {
       const info = item.card.info;
-
       const cartItem = cartItems.find(cart => cart.id === info.id);
 
 
@@ -233,10 +239,6 @@ function handleDecrementItems(info){
   </button>
 )}
 
-   
-
-
- 
 </div>
 
         </div>
