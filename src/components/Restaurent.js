@@ -10,7 +10,7 @@ export default function Restaurent() {
     async function fetchData() {
       try {
         const response = await fetch(
-         "https://your-backend-name.onrender.com/api/restaurants"
+         "https://swiggyclone-sjpl.onrender.com/api/restaurants"
         );
         const data = await response.json();
 
