@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send("Server running 🚀");
+  res.send("Server running new commit 🚀");
 });
 
 app.get("/api/restaurants", async (req, res) => {
